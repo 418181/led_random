@@ -1,3 +1,9 @@
+let list: number[] = []
+let n = 0
+let 燈數 = 0
+let a = 0
+let x = 0
+let y = 0
 input.onButtonPressed(Button.A, function () {
     basic.clearScreen()
     list = []
@@ -5,10 +11,10 @@ input.onButtonPressed(Button.A, function () {
         list.push(0)
     }
     n = 0
-    while (n < b) {
+    while (n < 燈數) {
         a = randint(0, 24)
         if (list[a] == 0) {
-            list.insertAt(a, 1)
+            list[a] = 1
             n += 1
             燈號(a + 1)
         }
@@ -24,16 +30,18 @@ function 燈號 (num: number) {
     }
     led.plot(x, y)
 }
-input.onButtonPressed(Button.B, function () {
-    b += 1
+input.onButtonPressed(Button.AB, function () {
+    燈數 += -1
+    if (燈數 < 0) {
+        燈數 = 0
+    }
 })
-let y = 0
-let x = 0
-let a = 0
-let n = 0
-let list: number[] = []
-let b = 0
-b = 0
+input.onButtonPressed(Button.B, function () {
+    燈數 += 1
+    if (燈數 > 25) {
+        燈數 = 25
+    }
+})
 basic.forever(function () {
 	
 })
